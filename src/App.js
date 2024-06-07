@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
+   
 const Countries = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
@@ -47,7 +48,7 @@ const Countries = () => {
             {country.flags && (
               <img
                 src={country.flags.png}
-                alt="country flags"
+                alt={`Flag of ${country.name.common}`}
                 className="country-img"
               />
             )}
