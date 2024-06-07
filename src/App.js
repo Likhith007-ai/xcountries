@@ -1,25 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./App.css";
 
-function App() {
+const Countries = () => {
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://restcountries.com/v3.1/all");
+        console.log(response.data);
+        setData(response.data);
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filterCountries = data.filter((country) =>
+    country.name.common.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 className="Heading" style={{ display: "flex", justifyContent: "center" }}>XCOUNTRIES</h1>
+      <input
+        placeholder="Search Country here"
+        onChange={handleSearch}
+        className="Search"
+      />
+      <div
+      className="child-div-1"
+      >
+        {filterCountries.map((country) => (
+          <div
+            key={country.name.common}
+            className="child-div-2"
+          >
+            {country.flags && (
+              <img
+                src={country.flags.png}
+                alt="country flags"
+                className="country-img"
+              />
+            )}
+            <h2
+              className="Country-name"
+            >
+              {country.name.common}
+            </h2>
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Countries;
