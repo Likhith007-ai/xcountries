@@ -2,7 +2,7 @@
   display: block;
   padding: 10px;
   margin: 20px auto;
-  width: 300px;
+  width: 50%;
   box-sizing: border-box;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -22,8 +22,8 @@
   box-sizing: border-box;
 }
 .country-img {
-  width: 120px;
-  height: auto;
+  width: 100px;
+  height: 80px;
 }
 .Country-name {
   text-align: center;
