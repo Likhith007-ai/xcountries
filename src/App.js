@@ -33,8 +33,7 @@ const Countries = () => {
   };
 
   const filterCountries = data.filter((country) =>
-    country.name.common.toLowerCase().includes(search.toLowerCase()) &&
-    country.name.common.toLowerCase() !== 'british indian ocean territory'
+    country.name.common.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
